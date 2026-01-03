@@ -51,7 +51,7 @@
             backdrop-filter: blur(12px);
             border-radius: 22px;
             padding: 35px 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: 0.3s;
         }
 
         .card:hover {
@@ -64,17 +64,6 @@
             margin-bottom: 20px;
         }
 
-        .card h2 {
-            font-size: 1.6rem;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            font-size: 0.95rem;
-            opacity: 0.85;
-            margin-bottom: 25px;
-        }
-
         .card button {
             padding: 14px 30px;
             border: none;
@@ -83,15 +72,9 @@
             color: #000;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.25s ease;
         }
 
-        .card button:hover {
-            background: #00c9a7;
-            transform: scale(1.05);
-        }
-
-        /* FULL SCREEN MODAL */
+        /* MODAL */
         .modal {
             position: fixed;
             inset: 0;
@@ -109,7 +92,6 @@
         .modal-content {
             max-width: 900px;
             margin: auto;
-            text-align: left;
         }
 
         .close {
@@ -118,18 +100,43 @@
             right: 25px;
             font-size: 1.8rem;
             cursor: pointer;
-            font-weight: bold;
+        }
+
+        .lesson {
+            display: none;
+        }
+
+        .lesson.active {
+            display: block;
         }
 
         .lesson h3 {
             margin-top: 30px;
-            margin-bottom: 10px;
             color: #00ffd5;
         }
 
         .lesson ul {
             padding-left: 20px;
             line-height: 1.8;
+        }
+
+        /* EXPLANATION BOXES */
+        .explain-grid {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .explain-box {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .explain-box h4 {
+            color: #00ffd5;
+            margin-bottom: 6px;
         }
     </style>
 </head>
@@ -143,30 +150,25 @@
         <div class="cards">
             <div class="card">
                 <div class="logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg"
-                        alt="HTML Logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg">
                 </div>
                 <h2>HTML</h2>
-                <p>The foundation of every website. Structure and content.</p>
                 <button onclick="openModal('html')">Start HTML</button>
             </div>
 
             <div class="card">
                 <div class="logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg"
-                        alt="CSS Logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg">
                 </div>
                 <h2>CSS</h2>
-                <p>Design, layout, responsiveness, and animations.</p>
                 <button onclick="openModal('css')">Start CSS</button>
             </div>
 
             <div class="card">
                 <div class="logo">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JS Logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png">
                 </div>
                 <h2>JavaScript</h2>
-                <p>Logic, interaction, and dynamic behavior.</p>
                 <button onclick="openModal('js')">Start JS</button>
             </div>
         </div>
@@ -175,76 +177,165 @@
     <!-- MODAL -->
     <div id="modal" class="modal">
         <div class="close" onclick="closeModal()">✕</div>
-        <div class="modal-content" id="modalContent"></div>
+
+        <div class="modal-content">
+
+            <!-- HTML LESSON -->
+            <div id="html" class="lesson">
+                <h2>Imagine I'm your best friend, and I'm teaching you HTML.</h2>
+
+                <h3>HTML (HyperText Markup Language): The structure or "skeleton" of a webpage.</h3>
+                <ul>
+                    <li>Look, HTML is basically the skeleton of every website you’ve ever visited. If a website were a
+                        house, HTML wouldn't be the paint or the cool
+                        smart-fridge; it’s the wooden beams and the foundation that keep everything from falling down.
+                    </li>
+                </ul>
+
+                <h3>Structure</h3>
+                <ul>
+                    <li>Semantic Tags</li>
+                    <li>Forms & Inputs</li>
+                    <li>Tables & Lists</li>
+                </ul>
+
+                <h2 style="margin-top:40px;">Lesson Visual Guide</h2>
+
+                <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px;">
+
+                    <img src="https://picsum.photos/800/400?1" style="border-radius:12px;">
+                    <p>Explanation text for image 1.</p>
+
+                    <img src="https://picsum.photos/800/400?2" style="border-radius:12px;">
+                    <p>Explanation text for image 2.</p>
+
+                    <img src="https://picsum.photos/800/400?3" style="border-radius:12px;">
+                    <p>Explanation text for image 3.</p>
+
+                    <img src="https://picsum.photos/800/400?4" style="border-radius:12px;">
+                    <p>Explanation text for image 4.</p>
+
+                    <img src="https://picsum.photos/800/400?5" style="border-radius:12px;">
+                    <p>Explanation text for image 5.</p>
+
+                    <img src="https://picsum.photos/800/400?6" style="border-radius:12px;">
+                    <p>Explanation text for image 6.</p>
+
+                    <img src="https://picsum.photos/800/400?7" style="border-radius:12px;">
+                    <p>Explanation text for image 7.</p>
+
+                    <img src="https://picsum.photos/800/400?8" style="border-radius:12px;">
+                    <p>Explanation text for image 8.</p>
+
+                    <img src="https://picsum.photos/800/400?9" style="border-radius:12px;">
+                    <p>Explanation text for image 9.</p>
+
+                    <img src="https://picsum.photos/800/400?10" style="border-radius:12px;">
+                    <p>Explanation text for image 10.</p>
+
+                    <img src="https://picsum.photos/800/400?11" style="border-radius:12px;">
+                    <p>Explanation text for image 11.</p>
+
+                    <img src="https://picsum.photos/800/400?12" style="border-radius:12px;">
+                    <p>Explanation text for image 12.</p>
+
+                    <img src="https://picsum.photos/800/400?13" style="border-radius:12px;">
+                    <p>Explanation text for image 13.</p>
+
+                    <img src="https://picsum.photos/800/400?14" style="border-radius:12px;">
+                    <p>Explanation text for image 14.</p>
+
+                    <img src="https://picsum.photos/800/400?15" style="border-radius:12px;">
+                    <p>Explanation text for image 15.</p>
+
+                    <img src="https://picsum.photos/800/400?16" style="border-radius:12px;">
+                    <p>Explanation text for image 16.</p>
+
+                    <img src="https://picsum.photos/800/400?17" style="border-radius:12px;">
+                    <p>Explanation text for image 17.</p>
+
+                    <img src="https://picsum.photos/800/400?18" style="border-radius:12px;">
+                    <p>Explanation text for image 18.</p>
+
+                    <img src="https://picsum.photos/800/400?19" style="border-radius:12px;">
+                    <p>Explanation text for image 19.</p>
+
+                    <img src="https://picsum.photos/800/400?20" style="border-radius:12px;">
+                    <p>Explanation text for image 20.</p>
+
+                </div>
+
+                <div class="explain-grid">
+                    <div class="explain-box">
+                        <h4>HTML</h4>
+                        <p>Defines page structure.</p>
+                    </div>
+                    <div class="explain-box">
+                        <h4>Tags</h4>
+                        <p>Building blocks.</p>
+                    </div>
+                    <div class="explain-box">
+                        <h4>Semantic</h4>
+                        <p>Meaningful layout.</p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- CSS LESSON -->
+            <div id="css" class="lesson">
+                <h2>CSS Full Course</h2>
+
+                <ul>
+                    <li>Selectors</li>
+                    <li>Box Model</li>
+                    <li>Flexbox</li>
+                    <li>Grid</li>
+                </ul>
+
+                <div class="explain-grid">
+                    <div class="explain-box">
+                        <h4>CSS</h4>
+                        <p>Styles the page.</p>
+                    </div>
+                    <div class="explain-box">
+                        <h4>Layout</h4>
+                        <p>Controls positioning.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JS LESSON -->
+            <div id="js" class="lesson">
+                <h2>JavaScript Full Course</h2>
+
+                <ul>
+                    <li>Variables</li>
+                    <li>Functions</li>
+                    <li>Events</li>
+                    <li>DOM</li>
+                </ul>
+
+                <div class="explain-grid">
+                    <div class="explain-box">
+                        <h4>JS</h4>
+                        <p>Makes site interactive.</p>
+                    </div>
+                    <div class="explain-box">
+                        <h4>DOM</h4>
+                        <p>Controls HTML.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <script>
         function openModal(type) {
-            const modal = document.getElementById('modal');
-            const content = document.getElementById('modalContent');
-
-            if (type === 'html') {
-                content.innerHTML = `
-          <h2>HTML Full Course</h2>
-          <div class="lesson">
-            <h3>Basics</h3>
-            <ul>
-              <li>What is HTML?</li>
-              <li>Elements & Tags</li>
-              <li>Headings, Paragraphs</li>
-              <li>Links & Images</li>
-            </ul>
-
-            <h3>Structure</h3>
-            <ul>
-              <li>Semantic Tags</li>
-              <li>Forms & Inputs</li>
-              <li>Tables & Lists</li>
-            </ul>
-          </div>`;
-            }
-
-            if (type === 'css') {
-                content.innerHTML = `
-          <h2>CSS Full Course</h2>
-          <div class="lesson">
-            <h3>Core</h3>
-            <ul>
-              <li>Selectors & Properties</li>
-              <li>Colors & Fonts</li>
-              <li>Box Model</li>
-            </ul>
-
-            <h3>Layout</h3>
-            <ul>
-              <li>Flexbox</li>
-              <li>Grid</li>
-              <li>Responsive Design</li>
-            </ul>
-          </div>`;
-            }
-
-            if (type === 'js') {
-                content.innerHTML = `
-          <h2>JavaScript Full Course</h2>
-          <div class="lesson">
-            <h3>Fundamentals</h3>
-            <ul>
-              <li>Variables & Data Types</li>
-              <li>Functions</li>
-              <li>Conditions & Loops</li>
-            </ul>
-
-            <h3>DOM</h3>
-            <ul>
-              <li>Selectors</li>
-              <li>Events</li>
-              <li>Manipulating Elements</li>
-            </ul>
-          </div>`;
-            }
-
-            modal.classList.add('active');
+            document.getElementById('modal').classList.add('active');
+            document.querySelectorAll('.lesson').forEach(l => l.classList.remove('active'));
+            document.getElementById(type).classList.add('active');
         }
 
         function closeModal() {
