@@ -138,6 +138,24 @@
             color: #00ffd5;
             margin-bottom: 6px;
         }
+
+        .ad-banner {
+            position: sticky;
+            bottom: 0;
+            margin-top: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+
+        }
+
+        .ad-banner img {
+            max-width: 100%;
+            border-radius: 12px;
+        }
     </style>
 </head>
 
@@ -179,6 +197,11 @@
         <div class="close" onclick="closeModal()">✕</div>
 
         <div class="modal-content">
+            <div class="ad-banner">
+                <img src="https://picsum.photos/900/120?ad" alt="Ad Banner">
+                <!-- pwede rin text lang instead of image -->
+                <!-- <p>Your Ad Here</p> -->
+            </div>
 
             <!-- HTML LESSON -->
             <div id="html" class="lesson">
