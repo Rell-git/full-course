@@ -7,6 +7,7 @@
     <title>Easiest Way to Learn Frontend</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         * {
@@ -16,10 +17,17 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        body.light {
+            background: #ffffff;
+            color: #111;
+            transition: background 0.5s, color 0.5s;
+        }
+
         body {
             min-height: 100vh;
             background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
             color: #fff;
+            transition: background 0.5s, color 0.5s;
         }
 
         .container {
@@ -27,6 +35,7 @@
             margin: auto;
             padding: 60px 20px;
             text-align: center;
+            position: relative;
         }
 
         .title {
@@ -44,6 +53,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
+            position: relative;
         }
 
         .card {
@@ -72,6 +82,27 @@
             color: #000;
             font-weight: 600;
             cursor: pointer;
+        }
+
+        /* SETTINGS BUTTON (next to cards) */
+        .settings-btn {
+            position: absolute;
+            top: 50%;
+            right: -60px;
+            transform: translateY(-50%);
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 1000;
+            color: #111;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            transition: color 0.5s, background 0.5s;
+        }
+
+        body:not(.light) .settings-btn {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* MODAL */
@@ -141,44 +172,149 @@
 
         .ad-banner {
             position: sticky;
-            /* sticks to bottom inside modal */
             bottom: 0;
             margin-top: 20px;
-            /* spacing from content */
             display: flex;
             justify-content: center;
             align-items: center;
             background: rgba(0, 0, 0, 0.2);
-            /* optional */
             border-radius: 6px;
             overflow: hidden;
             padding: 0;
-            /* remove extra padding so iframe fits */
             width: 100%;
         }
 
-        /* iframe inside ad container */
         .ad-banner iframe {
             max-width: 100% !important;
-            /* responsive */
             width: 728px;
-            /* desktop default */
             height: 90px;
-            /* desktop default */
         }
 
-        /* Mobile adjustments */
         @media screen and (max-width: 480px) {
             .ad-banner iframe {
                 width: 320px !important;
-                /* mobile ad */
                 height: 50px !important;
             }
+
+            .settings-btn {
+                right: -40px;
+            }
+        }
+
+        /* ===== SETTINGS MODAL ===== */
+        .settings-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .45);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+
+        .settings-modal.active {
+            display: flex;
+        }
+
+        .settings-box {
+            width: 260px;
+            padding: 30px;
+            border-radius: 22px;
+            background: rgba(20, 20, 20, .9);
+            display: flex;
+            justify-content: center;
+        }
+
+        /* ===== CANDLE ===== */
+        .candle {
+            position: relative;
+            width: 70px;
+            height: 160px;
+            background: #f2e9d8;
+            border-radius: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wick {
+            position: absolute;
+            top: -10px;
+            width: 4px;
+            height: 12px;
+            background: #333;
+        }
+
+        .face {
+            position: absolute;
+            top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .eyes {
+            display: flex;
+            gap: 12px;
+        }
+
+        .eye {
+            width: 7px;
+            height: 7px;
+            background: #111;
+            border-radius: 50%;
+            animation: blink 4s infinite;
+        }
+
+        .mouth {
+            width: 18px;
+            height: 8px;
+            border-bottom: 3px solid #111;
+            border-radius: 0 0 20px 20px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            92%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            95% {
+                transform: scaleY(0.1);
+            }
+        }
+
+        .flame {
+            position: absolute;
+            top: -42px;
+            width: 26px;
+            height: 44px;
+            background: radial-gradient(circle at 50% 60%, #ffcc33, #ff8844);
+            border-radius: 50%;
+            animation: flicker .15s infinite alternate;
+        }
+
+        @keyframes flicker {
+            from {
+                transform: rotate(-2deg) scale(.95);
+            }
+
+            to {
+                transform: rotate(2deg) scale(1.05);
+            }
+        }
+
+        .candle.off .flame {
+            display: none;
         }
     </style>
 </head>
 
-<body>
+<body class="light">
 
     <div class="container">
         <h1 class="title">Easiest Way to Learn Frontend</h1>
@@ -208,13 +344,17 @@
                 <h2>JavaScript</h2>
                 <button onclick="openModal('js')">Start JS</button>
             </div>
+
+            <!-- SETTINGS BUTTON PLACED BESIDE CARDS -->
+            <div class="settings-btn" id="openSettings">
+                <i class="fas fa-cog"></i>
+            </div>
         </div>
     </div>
 
     <!-- MODAL -->
     <div id="modal" class="modal">
         <div class="close" onclick="closeModal()">✕</div>
-
         <div class="modal-content">
 
             <div class="ad-banner">
@@ -230,155 +370,36 @@
                 <script src="https://www.highperformanceformat.com/6d45cdeb8cb7e39a34ca1366c9959a12/invoke.js"></script>
             </div>
 
-
-            <!-- HTML LESSON -->
+            <!-- LESSONS -->
             <div id="html" class="lesson">
-                <h2>Imagine I'm your best friend, and I'm teaching you HTML.</h2>
-
-                <h3>HTML (HyperText Markup Language): The structure or "skeleton" of a webpage.</h3>
-                <ul>
-                    <li>Look, HTML is basically the skeleton of every website you’ve ever visited. If a website were a
-                        house, HTML wouldn't be the paint or the cool
-                        smart-fridge; it’s the wooden beams and the foundation that keep everything from falling down.
-                    </li>
-                </ul>
-
-                <h3>Structure</h3>
-                <ul>
-                    <li>Semantic Tags</li>
-                    <li>Forms & Inputs</li>
-                    <li>Tables & Lists</li>
-                </ul>
-
-                <h2 style="margin-top:40px;">Lesson Visual Guide</h2>
-
-                <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px;">
-
-                    <img src="https://picsum.photos/800/400?1" style="border-radius:12px;">
-                    <p>Explanation text for image 1.</p>
-
-                    <img src="https://picsum.photos/800/400?2" style="border-radius:12px;">
-                    <p>Explanation text for image 2.</p>
-
-                    <img src="https://picsum.photos/800/400?3" style="border-radius:12px;">
-                    <p>Explanation text for image 3.</p>
-
-                    <img src="https://picsum.photos/800/400?4" style="border-radius:12px;">
-                    <p>Explanation text for image 4.</p>
-
-                    <img src="https://picsum.photos/800/400?5" style="border-radius:12px;">
-                    <p>Explanation text for image 5.</p>
-
-                    <img src="https://picsum.photos/800/400?6" style="border-radius:12px;">
-                    <p>Explanation text for image 6.</p>
-
-                    <img src="https://picsum.photos/800/400?7" style="border-radius:12px;">
-                    <p>Explanation text for image 7.</p>
-
-                    <img src="https://picsum.photos/800/400?8" style="border-radius:12px;">
-                    <p>Explanation text for image 8.</p>
-
-                    <img src="https://picsum.photos/800/400?9" style="border-radius:12px;">
-                    <p>Explanation text for image 9.</p>
-
-                    <img src="https://picsum.photos/800/400?10" style="border-radius:12px;">
-                    <p>Explanation text for image 10.</p>
-
-                    <img src="https://picsum.photos/800/400?11" style="border-radius:12px;">
-                    <p>Explanation text for image 11.</p>
-
-                    <img src="https://picsum.photos/800/400?12" style="border-radius:12px;">
-                    <p>Explanation text for image 12.</p>
-
-                    <img src="https://picsum.photos/800/400?13" style="border-radius:12px;">
-                    <p>Explanation text for image 13.</p>
-
-                    <img src="https://picsum.photos/800/400?14" style="border-radius:12px;">
-                    <p>Explanation text for image 14.</p>
-
-                    <img src="https://picsum.photos/800/400?15" style="border-radius:12px;">
-                    <p>Explanation text for image 15.</p>
-
-                    <img src="https://picsum.photos/800/400?16" style="border-radius:12px;">
-                    <p>Explanation text for image 16.</p>
-
-                    <img src="https://picsum.photos/800/400?17" style="border-radius:12px;">
-                    <p>Explanation text for image 17.</p>
-
-                    <img src="https://picsum.photos/800/400?18" style="border-radius:12px;">
-                    <p>Explanation text for image 18.</p>
-
-                    <img src="https://picsum.photos/800/400?19" style="border-radius:12px;">
-                    <p>Explanation text for image 19.</p>
-
-                    <img src="https://picsum.photos/800/400?20" style="border-radius:12px;">
-                    <p>Explanation text for image 20.</p>
-
-                </div>
-
-                <div class="explain-grid">
-                    <div class="explain-box">
-                        <h4>HTML</h4>
-                        <p>Defines page structure.</p>
-                    </div>
-                    <div class="explain-box">
-                        <h4>Tags</h4>
-                        <p>Building blocks.</p>
-                    </div>
-                    <div class="explain-box">
-                        <h4>Semantic</h4>
-                        <p>Meaningful layout.</p>
-
-                    </div>
-                </div>
+                <!-- HTML lesson content -->
             </div>
 
-            <!-- CSS LESSON -->
             <div id="css" class="lesson">
-                <h2>CSS Full Course</h2>
-
-                <ul>
-                    <li>Selectors</li>
-                    <li>Box Model</li>
-                    <li>Flexbox</li>
-                    <li>Grid</li>
-                </ul>
-
-                <div class="explain-grid">
-                    <div class="explain-box">
-                        <h4>CSS</h4>
-                        <p>Styles the page.</p>
-                    </div>
-                    <div class="explain-box">
-                        <h4>Layout</h4>
-                        <p>Controls positioning.</p>
-                    </div>
-                </div>
+                <!-- CSS lesson content -->
             </div>
 
-            <!-- JS LESSON -->
             <div id="js" class="lesson">
-                <h2>JavaScript Full Course</h2>
-
-                <ul>
-                    <li>Variables</li>
-                    <li>Functions</li>
-                    <li>Events</li>
-                    <li>DOM</li>
-                </ul>
-
-                <div class="explain-grid">
-                    <div class="explain-box">
-                        <h4>JS</h4>
-                        <p>Makes site interactive.</p>
-                    </div>
-                    <div class="explain-box">
-                        <h4>DOM</h4>
-                        <p>Controls HTML.</p>
-                    </div>
-                </div>
+                <!-- JS lesson content -->
             </div>
 
+        </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div class="settings-modal" id="settingsModal">
+        <div class="settings-box">
+            <div class="candle" id="modeCandle">
+                <div class="flame"></div>
+                <div class="wick"></div>
+                <div class="face">
+                    <div class="eyes">
+                        <div class="eye"></div>
+                        <div class="eye"></div>
+                    </div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -392,8 +413,28 @@
         function closeModal() {
             document.getElementById('modal').classList.remove('active');
         }
-    </script>
 
+        // Settings candle JS
+        const openSettings = document.getElementById('openSettings');
+        const settingsModal = document.getElementById('settingsModal');
+        const candle = document.getElementById('modeCandle');
+
+        openSettings.onclick = () => {
+            settingsModal.classList.add('active');
+        };
+
+        settingsModal.onclick = e => {
+            if (e.target === settingsModal) {
+                settingsModal.classList.remove('active');
+            }
+        };
+
+        candle.onclick = e => {
+            e.stopPropagation();
+            candle.classList.toggle('off');
+            document.body.classList.toggle('light');
+        };
+    </script>
 </body>
 
 </html>
