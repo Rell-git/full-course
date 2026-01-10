@@ -1,0 +1,365 @@
+/* RESET */
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* 3D BUTTON */
+.btn-3d {
+    padding: 15px 30px;
+    font-size: 18px;
+    background: linear-gradient(145deg, #6a5cff, #4b3cff);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 8px #352cc7;
+    cursor: pointer;
+    margin: 40px;
+}
+
+.btn-3d:active {
+    box-shadow: 0 4px #352cc7;
+    transform: translateY(4px);
+}
+
+/* MODAL BACKGROUND */
+.modal {
+    display: none;
+    /* IMPORTANT */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+/* MODAL CONTENT */
+.modal-content {
+    background: white;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    overflow-y: auto;
+    /* SCROLL HERE */
+}
+
+/* CLOSE BUTTON */
+.close {
+    font-size: 35px;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    right: 25px;
+}
+
+/* JUST FOR DEMO */
+.long-content p {
+    margin: 30px 0;
+}
+
+
+#openNoteModal {
+    width: 260px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+#openNoteModal:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+#card2 {
+    width: 260px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+}
+
+.hover01 {
+    background-color: rgb(0, 0, 0);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hover02 {
+    background-color: rgb(0, 0, 0);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hover03 {
+    background-color: rgb(0, 0, 0);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hover04 {
+    background-color: rgb(0, 0, 0);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hover05 {
+    background-color: rgb(0, 0, 0);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hover06 {
+    background-color: rgb(0, 0, 0);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hover07 {
+    background-color: rgb(0, 0, 0);
+    width: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+
+#glass-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+#glass-btn {
+    padding: 15px 40px;
+    font-size: 18px;
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.neon {
+    padding: 15px 40px;
+    color: #0ff;
+    background: black;
+    border: 2px solid #0ff;
+    font-size: 18px;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.neon:hover {
+    box-shadow:
+        0 0 10px #0ff,
+        0 0 20px #0ff,
+        0 0 40px #0ff;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 8px;
+    background: #4e54c8;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-ripple::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.btn-ripple:active::after {
+    width: 200px;
+    height: 200px;
+}
+
+.magnetic {
+    padding: 18px 45px;
+    font-size: 18px;
+    border-radius: 40px;
+    border: none;
+    background: linear-gradient(135deg, #ff0080, #7928ca);
+    color: white;
+    transition: transform 0.2s;
+}
+
+.tilt-card {
+    width: 250px;
+    height: 150px;
+    background: linear-gradient(135deg, #00f2fe, #4facfe);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    transition: transform 0.2s;
+}
+
+.float {
+    width: 200px;
+    padding: 20px;
+    background: #7928ca;
+    color: white;
+    border-radius: 15px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+/* THE NOTE MODAL STYLES */
+
+
+/* NOTE MODAL BACKGROUND */
+.note-modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    /* higher than other modal */
+    align-items: center;
+    justify-content: center;
+}
+
+/* NOTE BOX */
+.note-modal-box {
+    background: #fff8b0;
+    width: 280px;
+    max-width: 90vw;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    text-align: center;
+
+    /* AUTO EXPAND */
+    height: auto;
+}
+
+
+/* CLOSE */
+.note-close {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* TEXT */
+.note-text {
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    font-size: 14px;
+
+    white-space: pre-wrap;
+    /* ⭐ CRITICAL FIX */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    max-height: 200px;
+    overflow-y: auto;
+
+    user-select: all;
+}
+
+
+/* COPY BTN */
+#noteCopyBtn {
+    padding: 6px 14px;
+    border: none;
+    background: #4caf50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* COPIED MSG */
+#noteCopiedMsg {
+    display: none;
+    color: green;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* COPY BTN */
+#noteCopyBtn2 {
+    padding: 6px 14px;
+    border: none;
+    background: #4caf50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* COPIED MSG */
+#noteCopiedMsg2 {
+    display: none;
+    color: green;
+    font-size: 12px;
+    margin-top: 8px;
+}
