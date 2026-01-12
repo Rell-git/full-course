@@ -303,7 +303,7 @@ button:disabled {
 .note-close {
     position: absolute;
     top: 8px;
-    right: 12px;
+    right: 120px;
     font-size: 22px;
     cursor: pointer;
 }

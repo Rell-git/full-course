@@ -1,0 +1,70 @@
+  body {
+      margin: 0;
+      padding-bottom: 90px;
+      font-family: Arial, sans-serif;
+  }
+
+  /* FLOATING ICONS */
+  .app-dock {
+      position: fixed;
+      bottom: 12px;
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      pointer-events: none;
+  }
+
+  .app-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      overflow: hidden;
+      pointer-events: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+  }
+
+  .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+  }
+
+  .app-icon:active {
+      transform: scale(0.9);
+  }
+
+  /* FULLSCREEN MODAL */
+  .modal {
+      position: fixed;
+      inset: 0;
+      background: #0f0f0f;
+      color: white;
+      display: none;
+      flex-direction: column;
+      z-index: 999;
+  }
+
+  .modal.active {
+      display: flex;
+  }
+
+  .modal-header {
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      background: #111;
+  }
+
+  .close-btn {
+      font-size: 22px;
+      cursor: pointer;
+  }
+
+  .modal-content {
+      padding: 15px;
+      overflow-y: auto;
+      flex: 1;
+  }

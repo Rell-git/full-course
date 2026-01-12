@@ -6,11 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="nav.css">
 </head>
 
 <body>
 
     <h2>free css hover</h2>
+
+    <!-- FLOATING APP ICONS -->
+    <div class="app-dock">
+        <div class="app-icon" onclick="openModal('Home')">
+            <img src="home.png">
+        </div>
+        <div class="app-icon" onclick="openModal('Search')">
+            <img src="search.png">
+        </div>
+        <div class="app-icon" onclick="openModal('Create')">
+            <img src="add.png">
+        </div>
+        <div class="app-icon" onclick="openModal('Chat')">
+            <img src="chat.png">
+        </div>
+        <div class="app-icon" onclick="openModal('Notifications')">
+            <img src="bell.png">
+        </div>
+        <div class="app-icon" onclick="openModal('Settings')">
+            <img src="settings.png">
+        </div>
+    </div>
+
+    <!-- FULLSCREEN MODAL -->
+    <div class="modal" id="appModal">
+        <div class="modal-header">
+            <span id="modalTitle">Title</span>
+            <span class="close-btn" onclick="closeModal()">✕</span>
+        </div>
+
+        <div class="modal-content" id="modalContent">
+            <!-- Dynamic content -->
+        </div>
+    </div>
+
 
     <!-- 3D BUTTON -->
     <button id="openModal" class="btn-3d">FREE CSS HOVER</button>
@@ -131,6 +167,7 @@
 
 
     <script src="script.js"></script>
+    <script src="nav.js"></script>
 </body>
 
 </html>
